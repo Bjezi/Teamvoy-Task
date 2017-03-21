@@ -1,0 +1,23 @@
+<h1>Hello User!</h1>
+
+
+<% if @messages.exists? %>
+  <% @messages.each do |message| %>
+    <% if message.delete_way == 'after_hour' %>
+      <p>
+        <a href="/message/<%= URLcrypt.encode(message.id.to_s) %>">Your message</a>
+        (will be delete in <%= (message.created_at - Time.now + 3600).to_i %> seconds)
+      </p>
+    <% else %>
+      <p id="remove-link">
+        <a href="/message/<%= URLcrypt.encode(message.id.to_s) %>">Your message</a>
+        (will be delete after link visited)
+      </p>
+    <% end %>
+  <% end %>
+<% else %>
+  There are no messages yet. Create it!
+<% end %>
+
+<br><a href="/new" class="btn btn-default">Create Message</a>
+

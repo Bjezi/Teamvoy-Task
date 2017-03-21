@@ -1,0 +1,8 @@
+<form action="/message/<%= URLcrypt.encode(@message.id.to_s) %>" method="post">
+  <label>Enter your password to see message:</label><br>
+  <input type="password" name="confirm_password"><br>
+
+  <input type="submit">
+</form>
+
+
